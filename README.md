@@ -30,6 +30,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/hidaka
 ## Todo
 
  - [ ] Write tests
+ - [ ] Better error handling
 
 ## Copyright
 
