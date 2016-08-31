@@ -1,5 +1,7 @@
 # Thinreports::CLI
 
+[![Gem Version](https://badge.fury.io/rb/thinreports-cli.svg)](https://badge.fury.io/rb/thinreports-cli)
+
 **Unofficial** and **Experimental** Thinreports command-line tool.
 
 ## Installation
