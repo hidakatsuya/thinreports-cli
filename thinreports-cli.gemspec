@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Thinreports::Cli::VERSION
   spec.authors       = ['Katsuya HIDAKA']
   spec.email         = ['hidakatsuya@gmail.com']
+  spec.licenses      = ['MIT']
 
   spec.platform      = Gem::Platform::RUBY
 
