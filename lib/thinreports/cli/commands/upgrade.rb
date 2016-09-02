@@ -2,7 +2,7 @@ require 'json'
 
 module Thinreports
   module Cli
-    module Command
+    module Commands
       class Upgrade
         DESTINATION_VERSION = '0.9.0'
 
