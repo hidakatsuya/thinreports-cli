@@ -6,30 +6,30 @@ module Thinreports
       class Upgrade
         DESTINATION_VERSION = '0.9.0'
 
-        def initialize(source, destination)
-          @source = source
-          @destination = destination
+        def initialize(source_path, destination_path)
+          @source_path = source_path
+          @destination_path = destination_path
         end
 
         def call
-          schema = load_source_schema
-          error "The source version v#{schema['version']} is not upgradable." unless upgradable?(schema['version'])
+          source_schema = load_source_schema
+          error "The source version v#{source_schema['version']} is not upgradable." unless upgradable?(source_schema['version'])
 
-          upgraded_schema = LegacySchemaUpgrader.new(schema).upgrade
-          File.write(destination, JSON.pretty_generate(upgraded_schema), encoding: 'UTF-8')
+          upgraded_schema = LegacySchemaUpgrader.new(source_schema).upgrade
+          File.write(destination_path, JSON.pretty_generate(upgraded_schema), encoding: 'UTF-8')
         end
 
         private
 
-        attr_reader :source, :destination
+        attr_reader :source_path, :destination_path
 
         def upgradable?(source_version)
           source_version >= '0.8.0' && source_version < DESTINATION_VERSION
         end
 
         def load_source_schema
-          error "No such file - #{source}" unless File.exist?(source)
-          JSON.parse(File.read(source, encoding: 'UTF-8'))
+          error "No such file - #{source_path}" unless File.exist?(source_path)
+          JSON.parse(File.read(source_path, encoding: 'UTF-8'))
         end
 
         def error(message)
