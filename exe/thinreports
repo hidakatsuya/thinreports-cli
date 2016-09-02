@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/thinreports/cli'
-Thinreports::Cli::Commands.start
+Thinreports::Cli::Application.start
