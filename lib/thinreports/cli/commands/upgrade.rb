@@ -12,9 +12,8 @@ module Thinreports
         end
 
         def call
-          schema = JSON.parse(File.read(source, encoding: 'UTF-8'))
-
-          raise Thor::Error, 'Unupgradable version' unless upgradable?(schema['version'])
+          schema = load_source_schema
+          error "The source version v#{schema['version']} is not upgradable." unless upgradable?(schema['version'])
 
           upgraded_schema = LegacySchemaUpgrader.new(schema).upgrade
           File.write(destination, JSON.pretty_generate(upgraded_schema), encoding: 'UTF-8')
@@ -26,6 +25,15 @@ module Thinreports
 
         def upgradable?(source_version)
           source_version >= '0.8.0' && source_version < DESTINATION_VERSION
+        end
+
+        def load_source_schema
+          error "No such file - #{source}" unless File.exist?(source)
+          JSON.parse(File.read(source, encoding: 'UTF-8'))
+        end
+
+        def error(message)
+          raise Thor::Error, message
         end
 
         class LegacySchemaUpgrader < Thinreports::Layout::LegacySchema
