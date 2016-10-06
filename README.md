@@ -27,10 +27,10 @@ $ thinreports upgrade /path/to/old-0.8.x.tlf /path/to/new-0.9.x.tlf
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/hidakatsuya/thinreports-cli.
 
-## Todo
+## Plan
 
- - [ ] Write tests
- - [ ] Better error handling
+ - Write tests
+ - Implement `thinreports generate --json /path/to/data.json /path/to/result.pdf` command
 
 ## Copyright
 
